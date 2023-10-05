@@ -1,1 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Raspberry Pi LED Control</title>
+</head>
+<body>
+    <h1>Raspberry Pi LED Control</h1>
+    <button id="turnOnButton" onmousedown="turnOn()" onmouseup="turnOff()" ontouchstart="turnOn()" ontouchend="turnOff()">Turn On</button>
+    <!-- Use onmousedown and onmouseup (and ontouchstart and ontouchend for touch devices) events to handle button press and release -->
 
+    <script>
+        var isButtonPressed = false;  // Flag to track if the button is pressed
+
+        // JavaScript function to turn on the LED
+        function turnOn() {
+            isButtonPressed = true;  // Set the flag to true when the button is pressed
+            fetch("/turn_on")  // Send an HTTP GET request to the "/turn_on" route
+                .then(response => response.text())  // Get the response as text
+                .then(data => console.log(data));  // Log the response data to the console
+        }
+
+        // JavaScript function to turn off the LED
+        function turnOff() {
+            if (isButtonPressed) {  // Check if the button was pressed
+                fetch("/turn_off")  // Send an HTTP GET request to the "/turn_off" route
+                    .then(response => response.text())  // Get the response as text
+                    .then(data => console.log(data));  // Log the response data to the console
+            }
+            isButtonPressed = false;  // Reset the flag to false when the button is released
+        }
+    </script>
+</body>
+</html>
