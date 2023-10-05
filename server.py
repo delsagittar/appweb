@@ -11,7 +11,7 @@ led_pin = 17  # Define the GPIO pin number to which the LED is connected
 GPIO.setup(led_pin, GPIO.OUT)  # Set the LED pin as an output pin
 
 # Define routes
-@app.route("/")
+@app.route("/templates")
 def index():
     return render_template("index.html")  # Render the HTML template for the main page
 
