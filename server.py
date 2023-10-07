@@ -1,6 +1,7 @@
 # Import necessary libraries
 from flask import Flask, render_template, request  # Import Flask for web framework
 import RPi.GPIO as GPIO  # Import RPi.GPIO for GPIO control
+import cv2
 
 # Create a Flask web application
 app = Flask(__name__)
