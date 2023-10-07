@@ -1,7 +1,6 @@
 # Import necessary libraries
 from flask import Flask, render_template, request  # Import Flask for web framework
 import RPi.GPIO as GPIO  # Import RPi.GPIO for GPIO control
-from camera import VideoCamera
 
 # Create a Flask web application
 app = Flask(__name__)
@@ -17,17 +16,24 @@ GPIO.setup(backward, GPIO.OUT)
 GPIO.setup(left, GPIO.OUT)
 GPIO.setup(right, GPIO.OUT)
 
+def gen_frames():
+    cap = cv2.VideoCapture(0)  # Use 0 for the default camera
+    while True:
+        success, frame = cap.read()
+        if not success:
+            break
+        else:
+            ret, buffer = cv2.imencode('.jpg', frame)
+            if not ret:
+                break
+            yield (b'--frame\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + buffer.tobytes() + b'\r\n')
+
 # Define routes
 @app.route("/")
 def index():
     return render_template("index.html")  # Render the HTML template for the main page
 
-def gen(camera):
-    #get camera frame
-    while True:
-        frame = camera.get_frame()
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
 @app.route("/turn_on")
 def turn_on():
@@ -48,6 +54,10 @@ def dback():
 def dright():
     GPIO.output(right, GPIO.HIGH)  # Turn on the LED by setting the pin to HIGH
     return "right"  # Return a message indicating that the LED is turned on
+
+@app.route('/video')
+def video():
+    return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
 @app.route("/turn_off")
