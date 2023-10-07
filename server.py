@@ -11,7 +11,10 @@ forward = 17  # Define the GPIO pin number to which the LED is connected
 backward= 27
 left=23
 right=24
-GPIO.setup(led_pin, GPIO.OUT)  # Set the LED pin as an output pin
+GPIO.setup(forward, GPIO.OUT)  # Set the LED pin as an output pin
+GPIO.setup(backward, GPIO.OUT)
+GPIO.setup(left, GPIO.OUT)
+GPIO.setup(right, GPIO.OUT)
 
 # Define routes
 @app.route("/templates")
