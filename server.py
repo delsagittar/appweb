@@ -1,6 +1,7 @@
 # Import necessary libraries
 from flask import Flask, render_template, request  # Import Flask for web framework
 import RPi.GPIO as GPIO  # Import RPi.GPIO for GPIO control
+from camera import VideoCamera
 
 # Create a Flask web application
 app = Flask(__name__)
