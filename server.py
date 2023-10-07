@@ -6,6 +6,13 @@ import cv2
 # Create a Flask web application
 app = Flask(__name__)
 
+gst_str = (
+    "v4l2src device=/dev/video0 ! "
+    "videoconvert ! "
+    "video/x-raw,format=BGR ! "
+    "appsink"
+)
+
 # Set the GPIO mode and pin number
 GPIO.setmode(GPIO.BCM)  # Set the GPIO pin numbering mode to BCM
 forward = 17  # Define the GPIO pin number to which the LED is connected
