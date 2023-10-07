@@ -22,10 +22,12 @@ def gen_frames():
     while True:
         success, frame = cap.read()
         if not success:
+            print("Error reading frame")
             break
         else:
             ret, buffer = cv2.imencode('.jpg', frame)
             if not ret:
+                print("Error encoding frame")
                 break
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + buffer.tobytes() + b'\r\n')
