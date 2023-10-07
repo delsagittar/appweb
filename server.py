@@ -1,5 +1,5 @@
 # Import necessary libraries
-from flask import Flask, render_template, request  # Import Flask for web framework
+from flask import Flask, render_template, request, Response  # Import Flask for web framework
 import RPi.GPIO as GPIO  # Import RPi.GPIO for GPIO control
 import cv2
 
