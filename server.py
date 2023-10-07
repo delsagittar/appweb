@@ -41,7 +41,10 @@ def right():
 
 @app.route("/turn_off")
 def turn_off():
-    GPIO.output(led_pin, GPIO.LOW)  # Turn off the LED by setting the pin to LOW
+    GPIO.output(forward, GPIO.LOW)  # Turn off the LED by setting the pin to LOW
+    GPIO.output(backward, GPIO.LOW)
+    GPIO.output(left, GPIO.LOW)
+    GPIO.output(right, GPIO.LOW)
     return "LED turned off"  # Return a message indicating that the LED is turned off
 
 # Start the Flask app
