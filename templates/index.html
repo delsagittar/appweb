@@ -6,8 +6,10 @@
 <body>
     <h1>Raspberry Pi Online Control</h1>
     <
-    <button id="turnOnButton" onmousedown="turnOn()" onmouseup="turnOff()" ontouchstart="turnOn()" ontouchend="turnOff()">Turn On</button>
-    <button id="leftButton" onmousedown="left()" onmouseup="turnOff()" ontouchstart="turnOn()" ontouchend="turnOff()">Turn On</button>
+    <button id="turnOnButton" onmousedown="turnOn()" onmouseup="turnOff()" ontouchstart="turnOn()" ontouchend="turnOff()">Forward</button>
+    <button id="leftButton" onmousedown="left()" onmouseup="turnOff()" ontouchstart="left()" ontouchend="turnOff()">Left</button>
+    <button id="backButton" onmousedown="back()" onmouseup="turnOff()" ontouchstart="back()" ontouchend="turnOff()">Backward</button>
+    <button id="rightButton" onmousedown="right()" onmouseup="turnOff()" ontouchstart="right()" ontouchend="turnOff()">Left</button>
     <!-- Use onmousedown and onmouseup (and ontouchstart and ontouchend for touch devices) events to handle button press and release -->
 
     <script>
@@ -20,6 +22,27 @@
                 .then(response => response.text())  // Get the response as text
                 .then(data => console.log(data));  // Log the response data to the console
         }
+        function left() {
+            isButtonPressed = true;  // Set the flag to true when the button is pressed
+            fetch("/left")  // Send an HTTP GET request to the "/turn_on" route
+                .then(response => response.text())  // Get the response as text
+                .then(data => console.log(data));  // Log the response data to the console
+        }
+
+        function back() {
+            isButtonPressed = true;  // Set the flag to true when the button is pressed
+            fetch("/back")  // Send an HTTP GET request to the "/turn_on" route
+                .then(response => response.text())  // Get the response as text
+                .then(data => console.log(data));  // Log the response data to the console
+        }
+
+        function right() {
+            isButtonPressed = true;  // Set the flag to true when the button is pressed
+            fetch("/right")  // Send an HTTP GET request to the "/turn_on" route
+                .then(response => response.text())  // Get the response as text
+                .then(data => console.log(data));  // Log the response data to the console
+        }
+
 
         // JavaScript function to turn off the LED
         function turnOff() {
