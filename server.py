@@ -4,8 +4,7 @@ import RPi.GPIO as GPIO  # Import RPi.GPIO for GPIO control
 import cv2
 
 
-cap.set(3, 640)  # Width
-cap.set(4, 480)  # Height
+
 # Create a Flask web application
 app = Flask(__name__)
 
@@ -29,6 +28,8 @@ GPIO.setup(right, GPIO.OUT)
 
 def gen_frames():
     cap = cv2.VideoCapture(0)  # Use 0 for the default camera
+    cap.set(3, 640)  # Width
+    cap.set(4, 480)  # Height
     while True:
         success, frame = cap.read()
         if not success:
