@@ -3,6 +3,9 @@ from flask import Flask, render_template, request, Response  # Import Flask for 
 import RPi.GPIO as GPIO  # Import RPi.GPIO for GPIO control
 import cv2
 
+
+cap.set(3, 640)  # Width
+cap.set(4, 480)  # Height
 # Create a Flask web application
 app = Flask(__name__)
 
