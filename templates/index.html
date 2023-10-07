@@ -4,6 +4,48 @@
     <title>Raspberry Pi LED Control</title>
 </head>
 <body>
+
+    <style>
+    /* Style for the button container */
+    .button-container {
+      display: flex; /* Use a flex container */
+      flex-direction: column; /* Arrange items vertically */
+      align-items: center; /* Center-align items horizontally */
+      justify-content: space-between; /* Distribute items evenly */
+      height: 300px; /* Set a fixed height for the container */
+    }
+
+    /* Style for the buttons */
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #3498db;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Style for individual buttons */
+    #turnOnButton {
+      order: 1; /* Arrange at the top */
+    }
+
+    #leftButton {
+      order: 2; /* Arrange on the left */
+      transform: rotate(-90deg); /* Rotate the button text */
+    }
+
+    #backButton {
+      order: 3; /* Arrange at the bottom */
+      transform: rotate(180deg); /* Rotate the button text */
+    }
+
+    #rightButton {
+      order: 4; /* Arrange on the right */
+      transform: rotate(90deg); /* Rotate the button text */
+    }
+  </style>
     <h1>Raspberry Pi Online Control</h1>
     <
     <button id="turnOnButton" onmousedown="turnOn()" onmouseup="turnOff()" ontouchstart="turnOn()" ontouchend="turnOff()">Forward</button>
