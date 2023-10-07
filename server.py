@@ -17,7 +17,7 @@ GPIO.setup(left, GPIO.OUT)
 GPIO.setup(right, GPIO.OUT)
 
 # Define routes
-@app.route("/templates")
+@app.route("/")
 def index():
     return render_template("index.html")  # Render the HTML template for the main page
 
@@ -27,17 +27,17 @@ def turn_on():
     return "moving forward"  # Return a message indicating that the LED is turned on
 
 @app.route("/left")
-def left():
+def dleft():
     GPIO.output(left, GPIO.HIGH)  # Turn on the LED by setting the pin to HIGH
     return "left"  # Return a message indicating that the LED is turned on
 
 @app.route("/back")
-def back():
+def dback():
     GPIO.output(backward, GPIO.HIGH)  # Turn on the LED by setting the pin to HIGH
     return "back"  # Return a message indicating that the LED is turned on
 
 @app.route("/right")
-def right():
+def dright():
     GPIO.output(right, GPIO.HIGH)  # Turn on the LED by setting the pin to HIGH
     return "right"  # Return a message indicating that the LED is turned on
 
