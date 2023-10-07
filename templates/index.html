@@ -2,10 +2,7 @@
 <html>
 <head>
     <title>Raspberry Pi LED Control</title>
-</head>
-<body>
-
-    <style>
+  <style>
     /* Style for the button container */
     .button-container {
       display: flex; /* Use a flex container */
@@ -46,16 +43,16 @@
       transform: rotate(90deg); /* Rotate the button text */
     }
   </style>
-    <h1>Raspberry Pi Online Control</h1>
-    <
+</head>
+<body>
+  <div class="button-container">
     <button id="turnOnButton" onmousedown="turnOn()" onmouseup="turnOff()" ontouchstart="turnOn()" ontouchend="turnOff()">Forward</button>
     <button id="leftButton" onmousedown="left()" onmouseup="turnOff()" ontouchstart="left()" ontouchend="turnOff()">Left</button>
     <button id="backButton" onmousedown="back()" onmouseup="turnOff()" ontouchstart="back()" ontouchend="turnOff()">Backward</button>
-    <button id="rightButton" onmousedown="right()" onmouseup="turnOff()" ontouchstart="right()" ontouchend="turnOff()">Righ</button>
-    <!-- Use onmousedown and onmouseup (and ontouchstart and ontouchend for touch devices) events to handle button press and release -->
+    <button id="rightButton" onmousedown="right()" onmouseup="turnOff()" ontouchstart="right()" ontouchend="turnOff()">Right</button>
+  </div>
 
-
-<img src="{{ url_for('video') }}" width="640" height="480" /></div>
+<div><img src="{{ url_for('video') }}" width="640" height="480" /></div>
 
     <script>
         var isButtonPressed = false;  // Flag to track if the button is pressed
