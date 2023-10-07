@@ -21,6 +21,13 @@ GPIO.setup(right, GPIO.OUT)
 def index():
     return render_template("index.html")  # Render the HTML template for the main page
 
+def gen(camera):
+    #get camera frame
+    while True:
+        frame = camera.get_frame()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+
 @app.route("/turn_on")
 def turn_on():
     GPIO.output(forward, GPIO.HIGH)  # Turn on the LED by setting the pin to HIGH
