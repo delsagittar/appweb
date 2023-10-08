@@ -63,6 +63,7 @@
     </style>
   </head>
   <body>
+      <div id="im"><img src="{{ url_for('video') }}" width="640" height="480" /></div>
     <div class="button-container">
       <button id="turnOnButton" onmousedown="turnOn()" onmouseup="turnOff()" ontouchstart="turnOn()" ontouchend="turnOff()"></button>
       <button id="leftButton" onmousedown="left()" onmouseup="turnOffleft()" ontouchstart="left()" ontouchend="turnOffleft()"></button>
