@@ -60,9 +60,9 @@
   <body>
     <div class="button-container">
       <button id="turnOnButton" onmousedown="turnOn()" onmouseup="turnOff()" ontouchstart="turnOn()" ontouchend="turnOff()">Forward</button>
-      <button id="leftButton" onmousedown="left()" onmouseup="turnOff()" ontouchstart="left()" ontouchend="turnOff()">Left</button>
-      <button id="backButton" onmousedown="back()" onmouseup="turnOff()" ontouchstart="back()" ontouchend="turnOff()">Backward</button>
-      <button id="rightButton" onmousedown="right()" onmouseup="turnOff()" ontouchstart="right()" ontouchend="turnOff()">Right</button>
+      <button id="leftButton" onmousedown="left()" onmouseup="turnOffleft()" ontouchstart="left()" ontouchend="turnOffleft()">Left</button>
+      <button id="backButton" onmousedown="back()" onmouseup="turnOffback()" ontouchstart="back()" ontouchend="turnOffback()">Backward</button>
+      <button id="rightButton" onmousedown="right()" onmouseup="turnOffright()" ontouchstart="right()" ontouchend="turnOffright()">Right</button>
     </div>
 <div id="im"><img src="{{ url_for('video') }}" width="640" height="480" /></div>
 
@@ -105,6 +105,27 @@
                     .then(response => response.text())  // Get the response as text
                     .then(data => console.log(data));  // Log the response data to the console
             }
+
+        function turnOffleft() {
+            if (isButtonPressed) {  // Check if the button was pressed
+                fetch("/turn_offleft")  // Send an HTTP GET request to the "/turn_off" route
+                    .then(response => response.text())  // Get the response as text
+                    .then(data => console.log(data));  // Log the response data to the console
+            }
+
+        function turnOffback() {
+            if (isButtonPressed) {  // Check if the button was pressed
+                fetch("/turn_offback")  // Send an HTTP GET request to the "/turn_off" route
+                    .then(response => response.text())  // Get the response as text
+                    .then(data => console.log(data));  // Log the response data to the console
+            }
+
+           function turnOffright() {
+            if (isButtonPressed) {  // Check if the button was pressed
+                fetch("/turn_offright")  // Send an HTTP GET request to the "/turn_off" route
+                    .then(response => response.text())  // Get the response as text
+                    .then(data => console.log(data));  // Log the response data to the console
+            } 
             isButtonPressed = false;  // Reset the flag to false when the button is released
         }
     </script>
