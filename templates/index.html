@@ -74,6 +74,10 @@
     <script>
         var isButtonPressed = false;  // Flag to track if the button is pressed
 
+        document.addEventListener('selectstart', function(e) {
+  e.preventDefault();
+});
+
         // JavaScript function to turn on the LED
         function turnOn() {
             isButtonPressed = true;  // Set the flag to true when the button is pressed
