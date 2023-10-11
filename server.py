@@ -26,22 +26,42 @@ GPIO.setup(backward, GPIO.OUT)
 GPIO.setup(left, GPIO.OUT)
 GPIO.setup(right, GPIO.OUT)
 
+# def gen_frames():
+#     cap = cv2.VideoCapture(0)  # Use 0 for the default camera
+#     cap.set(3, 640)  # Width
+#     cap.set(4, 480)  # Height
+#     while True:
+#         success, frame = cap.read()
+#         if not success:
+#             print("Error reading frame")
+#             break
+#         else:
+#             ret, buffer = cv2.imencode('.jpg', frame)
+#             if not ret:
+#                 print("Error encoding frame")
+#                 break
+#             yield (b'--frame\r\n'
+#                    b'Content-Type: image/jpeg\r\n\r\n' + buffer.tobytes() + b'\r\n')
+
 def gen_frames():
     cap = cv2.VideoCapture(0)  # Use 0 for the default camera
-    cap.set(3, 640)  # Width
-    cap.set(4, 480)  # Height
+    cap.set(3, 320)  # Lower width for faster encoding
+    cap.set(4, 240)  # Lower height for faster encoding
+    cap.set(5, 15)  # Lower frame rate for faster encoding
+
     while True:
         success, frame = cap.read()
         if not success:
             print("Error reading frame")
             break
         else:
-            ret, buffer = cv2.imencode('.jpg', frame)
+            ret, buffer = cv2.imencode('.jpg', frame, [int(cv2.IMWRITE_JPEG_QUALITY), 30])
             if not ret:
                 print("Error encoding frame")
                 break
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + buffer.tobytes() + b'\r\n')
+
 
 # Define routes
 @app.route("/")
