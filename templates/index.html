@@ -187,6 +187,7 @@ function handleGamepadInput(){ //controller inputs
             } 
            }
             isButtonPressed = false;  // Reset the flag to false when the button is released
+        requestAnimationFrame(handleGamepadInput);
         
     </script>
 </body>
