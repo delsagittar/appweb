@@ -75,50 +75,52 @@
 
     <script>
 
-function handleGamepadInput(){ //controller inputs
-  const gamepads= navigator.getGamepads();
+var isButtonPressed = false; // Flag to track if the button is pressed
+
+// Function to handle gamepad input
+function handleGamepadInput() {
+  const gamepads = navigator.getGamepads();
 
   for (let i = 0; i < gamepads.length; i++) {
-    var gamepadFind= gamepads[i];
-    if(gamepadFind !== null){
-      const gamepad= gamepads[i];
-        //car control from controller
-          //back and forth
-      if (gamepad.axes[0]>0.3){
-        turnOn()
-      }else{
-        turnOff()
+    var gamepadFind = gamepads[i];
+    if (gamepadFind !== null) {
+      const gamepad = gamepads[i];
+
+      // Car control from the controller
+      // Back and forth
+      if (gamepad.axes[0] > 0.3) {
+        turnOn();
+      } else {
+        turnOff();
       }
-      if (gamepad.axes[0]<-0.3){
-        back()
-      }else{
-        turnOffback()
+      if (gamepad.axes[0] < -0.3) {
+        back();
+      } else {
+        turnOffback();
       }
-        //left and right
-         if (gamepad.axes[1]>0.3){
-        right()
-      }else{
-        turnOffright()
+      // Left and right
+      if (gamepad.axes[1] > 0.3) {
+        right();
+      } else {
+        turnOffright();
       }
-      if (gamepad.axes[1]<-0.3){
-        left()
-      }else{
-        turnOffleft()
+      if (gamepad.axes[1] < -0.3) {
+        left();
+      } else {
+        turnOffleft();
       }
-        
+
       console.log('Gamepad', i, 'Left Joystick X-axis:', gamepad.axes[0]);
       console.log('Gamepad', i, 'Left Joystick Y-axis:', gamepad.axes[1]);
       console.log('Gamepad', i, 'Right Joystick X-axis:', gamepad.axes[2]);
       console.log('Gamepad', i, 'Right Joystick Y-axis:', gamepad.axes[3]);
-    }else{
-      console.log('no connection')
-      console.log(gamepads)
+    } else {
+      console.log('no connection');
+      console.log(gamepads);
     }
   }
   requestAnimationFrame(handleGamepadInput);
 }
-        
-        var isButtonPressed = false;  // Flag to track if the button is pressed
 
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
@@ -188,7 +190,6 @@ function handleGamepadInput(){ //controller inputs
            }
             isButtonPressed = false;  // Reset the flag to false when the button is released
         requestAnimationFrame(handleGamepadInput);
-        
     </script>
 </body>
 </html>
