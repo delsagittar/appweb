@@ -121,7 +121,7 @@ window.addEventListener("gamepaddisconnected", (event) =>{
 function controllerInput(){              //define the controller inputs ex axis for joystic
   if(controllerIndex!==null){
     const gamepad=navigator.getGamepads()[controllerIndex];
-    controllerX= gamepad.axes[0];
+    controllerX= gamepad.axes[2];
     controllerY= gamepad.axes[1];
     //console.log(gamepad);
   }
