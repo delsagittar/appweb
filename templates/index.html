@@ -77,50 +77,73 @@
 
 var isButtonPressed = false; // Flag to track if the button is pressed
 
-// Function to handle gamepad input
-function handleGamepadInput() {
-  const gamepads = navigator.getGamepads();
+controllerIndex=null;
+var controllerX;
+var controllerY;
+var on= false;
+var dir=false;
 
-  for (let i = 0; i < gamepads.length; i++) {
-    var gamepadFind = gamepads[i];
-    if (gamepadFind !== null) {
-      const gamepad = gamepads[i];
+window.addEventListener("gamepadconnected", (event) =>{
+  controllerIndex=event.gamepad.index;
+  console.log("connected");                                           //get the connectionor disconnect message and get the controller index
+});
+window.addEventListener("gamepaddisconnected", (event) =>{
+  controllerIndex=null;
+  console.log("disconnected");
+});
 
-      // Car control from the controller
-      // Back and forth
-      if (gamepad.axes[0] > 0.3) {
-        turnOn();
-      } else {
-        turnOff();
-      }
-      if (gamepad.axes[0] < -0.3) {
-        back();
-      } else {
-        turnOffback();
-      }
-      // Left and right
-      if (gamepad.axes[1] > 0.3) {
-        right();
-      } else {
-        turnOffright();
-      }
-      if (gamepad.axes[1] < -0.3) {
-        left();
-      } else {
-        turnOffleft();
-      }
-
-      console.log('Gamepad', i, 'Left Joystick X-axis:', gamepad.axes[0]);
-      console.log('Gamepad', i, 'Left Joystick Y-axis:', gamepad.axes[1]);
-      console.log('Gamepad', i, 'Right Joystick X-axis:', gamepad.axes[2]);
-      console.log('Gamepad', i, 'Right Joystick Y-axis:', gamepad.axes[3]);
-    } else {
-      console.log('no connection');
-      console.log(gamepads);
-    }
+function controllerInput(){              //define the controller inputs ex axis for joystic
+  if(controllerIndex!==null){
+    const gamepad=navigator.getGamepads()[controllerIndex];
+    controllerX= gamepad.axes[0];
+    controllerY= gamepad.axes[1];
+    //console.log(gamepad);
   }
-  requestAnimationFrame(handleGamepadInput);
 }
+
+function run(){         //run loop
+  controllerInput(); 
+
+    //stting up the controlls
+  //back and forth
+  if(controllerY>0.3){
+    if(on==false){
+    turnOn();
+    on=true;
+  }
+  }else if(controllerY<-0.3){
+    if(on==false){
+    back();
+    on=true;
+  }
+  }else{
+    if(on==true){
+      turnOff();
+      turnOffback();
+      on=false;
+  }
+  }
+  //left and right
+  if(controllerX>0.3){
+    if(dir==false){
+    right();
+    dir=true;
+  }
+  }else if(controllerX<-0.3){
+    if (dir==false){
+    left();
+    dir=true;
+  }
+  }else{
+    if(dir==true){
+      turnOffright();
+      turnOffleft();
+      dir=false;
+  }
+  }
+  requestAnimationFrame(run); //important for synchronisation 
+}
+run();
 
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
