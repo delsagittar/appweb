@@ -11,13 +11,6 @@
            touch-action: none;
        }
         
-      .button-container {
-       position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-      }
   
       /* Style for the buttons */
       button {
@@ -31,39 +24,69 @@
         border-radius: 5px;
         cursor: none;
         touch-action: none;
+            pointer-events: auto;
       }
   
-      /* Style for individual buttons */
-      #turnOnButton {
-       position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-      }
-  
-      #leftButton {
-        position: absolute;
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
-       
-      }
-  
-      #backButton {
-       position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    
-      }
-  
-      #rightButton {
-       position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-        
-      }
+      #im {
+            position: relative;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        #im img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .button-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+        }
+
+
+        #turnOnButton {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+
+        #leftButton {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 10px;
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+
+        #backButton {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+
+        #rightButton {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 10px;
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+
+        button:hover {
+            opacity: 1;
+        }
     </style>
   </head>
   <body>
